@@ -44,7 +44,7 @@ export default async function handler(req, res) {
  
 My name is Leon. I'm a CrossFit coach and the developer of Lifeboat - a lesson planning app for iOS.
  
-I started building Lifeboat because I wanted an efficient way of creating elegant lesson plans. It should be ready soon - I'm currently testing it out for my classes. 
+I started building Lifeboat because I wanted an efficient way of creating elegant lesson plans. I'm currently testing it out for my classes and I'll let you know when it's ready. 
  
 Cheers,
 Leon

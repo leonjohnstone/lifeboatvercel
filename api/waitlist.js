@@ -42,16 +42,14 @@ export default async function handler(req, res) {
       subject: "You're on the list",
       text: `Hey,
  
-My name is Leon — I'm a CrossFit coach and the developer of Lifeboat.
+My name is Leon. I'm a CrossFit coach and the developer of Lifeboat - a lesson planning app for iOS.
  
-I started building Lifeboat because I wanted an efficient way of creating elegant lesson plans.
- 
-Lifeboat should be ready soon and will be available on iOS. I'm testing it out for my classes.
-
-P.S. What’s the most annoying part of creating your lesson plans? Hit reply and let me know.
+I started building Lifeboat because I wanted an efficient way of creating elegant lesson plans. It should be ready soon - I'm currently testing it out for my classes. 
  
 Cheers,
-Leon`,
+Leon
+
+P.S. What’s the most annoying part of creating your lesson plans? Hit reply and let me know.`,
     });
  
     if (emailError) {

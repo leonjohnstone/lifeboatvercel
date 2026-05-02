@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lifeboat — CrossFit lesson planning done uncommonly well</title>
+  <meta name="description" content="Lifeboat Lesson Planner — CrossFit lesson planning done uncommonly well. Join the waitlist." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root { --orange:#FF5A0A; --orange-dk:#E14E07; --orange-lt:#FFE6D8; --ink:#1A1208; --paper:#FDFAF6; --muted:#8C7B6B; --border:#E8DDD0; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
+    body{font-family:'DM Mono',monospace;background-color:var(--paper);color:var(--ink);min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5}
+    main{position:relative;z-index:1;flex:1;max-width:720px;margin:0 auto;padding:0 2rem;width:100%}
+    .hero{display:flex;flex-direction:column;justify-content:center;min-height:100vh;padding:4.5rem 0 5rem}.hero-brand{margin-bottom:1.75rem;animation:fadeUp .6s .05s ease both}
+    .logo-mark{width:72px;height:72px;flex-shrink:0;object-fit:cover;border-radius:16px;box-shadow:0 10px 24px rgba(255,90,10,.14)}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,5.5rem);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.75rem;animation:fadeUp .7s .2s ease both} h1 em{font-style:italic;color:var(--orange)}
+    .orange-rule{display:block;width:36px;height:2px;background:var(--orange);margin-bottom:2.5rem;animation:expandRule .8s .35s ease both}
+    .waitlist{margin-top:.5rem;animation:fadeUp .7s .4s ease both}.form-row{display:flex;gap:0;border:1.5px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color .2s;max-width:480px}.form-row:focus-within{border-color:var(--orange)}
+    .form-row input[type=email]{flex:1;padding:.9rem 1.1rem;border:none;outline:none;background:transparent;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--ink);letter-spacing:.02em;min-width:0}.form-row input::placeholder{color:var(--border)}
+    .form-row button{padding:.9rem 1.4rem;background:var(--orange);color:#fff;border:none;font-family:'DM Mono',monospace;font-size:.7rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .2s,opacity .2s;white-space:nowrap}.form-row button:hover{background:var(--orange-dk)}.form-row button:disabled{opacity:.6;cursor:not-allowed}
+    .success-msg{display:none;align-items:center;gap:.75rem;padding:1rem 1.2rem;background:var(--orange-lt);border-radius:4px;max-width:480px}.success-msg.show{display:flex}.success-msg span{font-size:.75rem;letter-spacing:.06em;color:var(--orange-dk)}.error-msg{display:none;margin-top:.6rem;font-size:.72rem;letter-spacing:.05em;color:#c0392b;max-width:480px}.error-msg.show{display:block}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@keyframes expandRule{from{width:0;opacity:0}to{width:36px;opacity:1}}
+    @media(max-width:560px){main{padding:0 1.25rem}.form-row{flex-direction:column}.form-row button{padding:.85rem;text-align:center}.hero{min-height:auto;padding:4rem 0 4.5rem}}
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="hero-brand"><img class="logo-mark" src="assets/lifeboat-logo.png" alt="Lifeboat logo" onerror="this.style.display='none'" /></div>
+      <h1>CrossFit lesson planning,<br /><em>done uncommonly<br />well.</em></h1>
+      <span class="orange-rule"></span>
+      <div class="waitlist">
+        <form class="waitlist-form"><div class="form-row"><input type="email" name="email" placeholder="your@email.com" required autocomplete="email" /><button type="submit">Join waitlist</button></div></form>
+        <div class="error-msg" role="alert" aria-live="polite">Something went wrong — please try again.</div>
+        <div class="success-msg" role="status" aria-live="polite"><span>You're on the list — we'll be in touch.</span></div>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll('.waitlist-form').forEach((form)=>{form.addEventListener('submit',async(e)=>{e.preventDefault();const wrap=form.closest('.waitlist');const btn=form.querySelector('button');const errorMsg=wrap.querySelector('.error-msg');const successMsg=wrap.querySelector('.success-msg');const email=form.querySelector('input[name="email"]').value;btn.disabled=true;btn.textContent='Joining...';errorMsg.classList.remove('show');try{const res=await fetch('/api/waitlist',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});if(!res.ok)throw new Error('Server error');form.style.display='none';successMsg.classList.add('show')}catch{btn.disabled=false;btn.textContent='Join waitlist';errorMsg.classList.add('show')}})});
+  </script>
+</body>
+</html>

@@ -1,6 +1,15 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://testflight.apple.com/join/pfsba7pV",
+      "permanent": false
+    }
+  ],
+
   "functions": {
     "api/waitlist.js": {
       "maxDuration": 10

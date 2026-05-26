@@ -3,44 +3,213 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lifeboat — CrossFit lesson planning done uncommonly well</title>
-  <meta name="description" content="Lifeboat Lesson Planner — CrossFit lesson planning done uncommonly well. Join the waitlist." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <title>Lifeboat — Mission Control for CrossFit Coaches</title>
+  <meta name="description" content="Lifeboat is Mission Control for CrossFit Coaches: lesson plans, movement libraries, and live timelines." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
-    :root { --orange:#FF5A0A; --orange-dk:#E14E07; --orange-lt:#FFE6D8; --ink:#1A1208; --paper:#FDFAF6; --muted:#8C7B6B; --border:#E8DDD0; }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
-    body{font-family:'DM Mono',monospace;background-color:var(--paper);color:var(--ink);min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
-    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5}
-    main{position:relative;z-index:1;flex:1;max-width:720px;margin:0 auto;padding:0 2rem;width:100%}
-    .hero{display:flex;flex-direction:column;justify-content:center;min-height:100vh;padding:4.5rem 0 5rem}.hero-brand{margin-bottom:1.75rem;animation:fadeUp .6s .05s ease both}
-    .logo-mark{width:72px;height:72px;flex-shrink:0;object-fit:cover;border-radius:16px;box-shadow:0 10px 24px rgba(255,90,10,.14)}
-    h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,5.5rem);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.75rem;animation:fadeUp .7s .2s ease both} h1 em{font-style:italic;color:var(--orange)}
-    .orange-rule{display:block;width:36px;height:2px;background:var(--orange);margin-bottom:2.5rem;animation:expandRule .8s .35s ease both}
-    .waitlist{margin-top:.5rem;animation:fadeUp .7s .4s ease both}.form-row{display:flex;gap:0;border:1.5px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color .2s;max-width:480px}.form-row:focus-within{border-color:var(--orange)}
-    .form-row input[type=email]{flex:1;padding:.9rem 1.1rem;border:none;outline:none;background:transparent;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--ink);letter-spacing:.02em;min-width:0}.form-row input::placeholder{color:var(--border)}
-    .form-row button{padding:.9rem 1.4rem;background:var(--orange);color:#fff;border:none;font-family:'DM Mono',monospace;font-size:.7rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .2s,opacity .2s;white-space:nowrap}.form-row button:hover{background:var(--orange-dk)}.form-row button:disabled{opacity:.6;cursor:not-allowed}
-    .success-msg{display:none;align-items:center;gap:.75rem;padding:1rem 1.2rem;background:var(--orange-lt);border-radius:4px;max-width:480px}.success-msg.show{display:flex}.success-msg span{font-size:.75rem;letter-spacing:.06em;color:var(--orange-dk)}.error-msg{display:none;margin-top:.6rem;font-size:.72rem;letter-spacing:.05em;color:#c0392b;max-width:480px}.error-msg.show{display:block}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@keyframes expandRule{from{width:0;opacity:0}to{width:36px;opacity:1}}
-    @media(max-width:560px){main{padding:0 1.25rem}.form-row{flex-direction:column}.form-row button{padding:.85rem;text-align:center}.hero{min-height:auto;padding:4rem 0 4.5rem}}
+    :root{
+      --orange:#f16422;
+      --orange-dark:#cf4d17;
+      --ink:#fbfaf7;
+      --muted:rgba(251,250,247,.62);
+      --faint:rgba(251,250,247,.18);
+      --bg:#05080c;
+      --phone-left:5.333333%;
+      --phone-top:2.50%;
+      --phone-width:89.333333%;
+      --phone-height:94.78%;
+      --phone-radius:10.7% / 5.2%;
+    }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{
+      min-height:100vh;
+      font-family:"DM Mono",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 82% 18%,rgba(241,100,34,.22),transparent 30%),
+        radial-gradient(circle at 18% 82%,rgba(31,88,132,.18),transparent 33%),
+        linear-gradient(135deg,#030508 0%,#111923 52%,#030508 100%);
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";position:fixed;inset:0;pointer-events:none;opacity:.045;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+    main{position:relative;z-index:1}
+
+    .hero{
+      width:min(1180px,100%);
+      min-height:100svh;
+      margin:0 auto;
+      padding:42px clamp(18px,4vw,64px);
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(300px,430px);
+      grid-template-areas:
+        "brand phone"
+        "title phone"
+        "features phone"
+        "cta phone";
+      align-content:center;
+      align-items:center;
+      column-gap:clamp(34px,7vw,90px);
+      row-gap:0;
+    }
+
+    .brand{grid-area:brand;display:flex;align-items:center;gap:12px;margin-bottom:clamp(34px,7vh,76px);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .brand img{width:38px;height:38px;object-fit:contain;border-radius:10px}.brand span{font-size:18px}
+    h1{grid-area:title;max-width:760px;font-size:clamp(42px,5.65vw,76px);line-height:1.16;letter-spacing:-.075em;margin-bottom:clamp(32px,6vh,60px);text-wrap:balance}
+    h1 strong{color:var(--orange);font-weight:700}
+
+    .features{grid-area:features;display:grid;gap:26px;margin-bottom:clamp(32px,6vh,58px)}
+    .feature{appearance:none;border:0;background:transparent;color:var(--muted);display:flex;align-items:center;gap:0;text-align:left;cursor:pointer;opacity:.42;transition:opacity .25s ease,color .25s ease,transform .25s ease;font:inherit}
+    .feature.active{opacity:1;color:var(--ink);transform:translateX(2px)}
+    .feature:focus-visible,.carousel-arrow:focus-visible,.beta-button:focus-visible,.form-row button:focus-visible,input:focus-visible{outline:2px solid var(--orange);outline-offset:5px}
+    .feature-icon{width:56px;height:56px;border:1px solid var(--faint);border-radius:50%;display:grid;place-items:center;color:currentColor;transition:border-color .25s ease,color .25s ease}
+    .feature.active .feature-icon{border-color:var(--orange);color:var(--orange)}
+    .feature svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .feature-title{font-size:clamp(20px,2.2vw,27px);font-weight:700;letter-spacing:-.045em}
+    .feature{padding-left:2px}
+    .carousel-arrow{display:none}
+
+    .waitlist{grid-area:cta}.cta-stack{width:min(100%,520px);display:grid;gap:12px}
+    .form-row{height:62px;display:grid;grid-template-columns:minmax(0,1fr) auto;overflow:hidden;border:1px solid rgba(255,255,255,.24);border-radius:10px;background:rgba(255,255,255,.035);backdrop-filter:blur(14px)}
+    .form-row:focus-within{border-color:var(--orange)}
+    input[type=email]{min-width:0;padding:0 18px;border:0;outline:0;background:transparent;color:var(--ink);font:500 15px/1 "DM Mono",monospace}
+    input::placeholder{color:rgba(251,250,247,.42)}
+    .form-row button,.beta-button{height:62px;padding:0 24px;font:700 14px/1 "DM Mono",monospace;cursor:pointer;white-space:nowrap;transition:transform .2s ease,background .2s ease,border-color .2s ease}
+    .form-row button{border:0;background:var(--orange);color:#fff}.form-row button:hover{background:var(--orange-dark)}
+    .beta-button{display:flex;align-items:center;justify-content:center;width:100%;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.42);border-radius:10px;background:rgba(255,255,255,.02)}
+    .beta-button:hover{transform:translateY(-1px);border-color:#fff;background:rgba(255,255,255,.075)}
+    .error-msg,.success-msg{display:none;margin-top:14px;color:var(--muted);font-size:13px}.error-msg.show,.success-msg.show{display:block}.error-msg{color:#ffb092}
+
+    .phone-stage{grid-area:phone;justify-self:center;width:min(100%,430px);filter:drop-shadow(0 28px 60px rgba(0,0,0,.56))}
+    .phone-stack{position:relative;aspect-ratio:1350/2760}
+    .phone-screen{position:absolute;left:var(--phone-left);top:var(--phone-top);width:var(--phone-width);height:var(--phone-height);border-radius:var(--phone-radius);overflow:hidden;background:#050505;z-index:1}
+    .phone-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease}
+    .phone-shot.active{opacity:1}
+    .phone-frame{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;z-index:2}
+
+    @media (max-width:760px){
+      .hero{width:100%;min-height:100svh;padding:24px 18px 30px;grid-template-columns:1fr;grid-template-areas:"brand" "title" "phone" "features" "cta";align-content:start;justify-items:stretch;gap:0}
+      .brand{margin-bottom:20px}.brand img{width:34px;height:34px}.brand span{font-size:15px}
+      h1{font-size:clamp(35px,10vw,56px);line-height:1.12;margin:0 0 22px}
+      .phone-stage{width:min(58vw,280px);margin:0 auto 18px}
+      .features{margin:0 auto 26px;width:min(100%,430px);display:grid;grid-template-columns:42px minmax(0,1fr) 42px;align-items:center;gap:10px}
+      .feature{display:none;grid-column:2;grid-row:1;justify-self:center;text-align:center;grid-template-columns:1fr;gap:0;opacity:0;pointer-events:none;transform:none}
+      .feature.active{display:grid;opacity:1;pointer-events:auto;transform:none}
+      .feature-icon{display:none}.feature-title{font-size:clamp(20px,6vw,30px);letter-spacing:-.05em}
+      .carousel-arrow{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.035);color:#fff;font-size:30px;line-height:1;cursor:pointer}
+      .carousel-arrow.prev{grid-column:1}.carousel-arrow.next{grid-column:3}
+      .cta-stack{margin:0 auto;width:min(100%,430px)}
+      .form-row{height:auto;grid-template-columns:1fr}.form-row input{height:52px}.form-row button,.beta-button{height:52px}
+    }
+    @media (max-width:420px){
+      .hero{padding:18px 14px 24px}.brand{margin-bottom:16px}.brand span{display:none}h1{font-size:32px;margin-bottom:16px}.phone-stage{width:min(64vw,245px);margin-bottom:14px}.features{margin-bottom:20px}.feature-title{font-size:20px}input[type=email]{font-size:13px}.form-row button,.beta-button{font-size:13px}
+    }
   </style>
 </head>
 <body>
   <main>
     <section class="hero">
-      <div class="hero-brand"><img class="logo-mark" src="assets/lifeboat-logo.png" alt="Lifeboat logo" onerror="this.style.display='none'" /></div>
-      <h1>CrossFit lesson planning,<br /><em>done uncommonly<br />well.</em></h1>
-      <span class="orange-rule"></span>
+      <div class="brand"><img src="assets/logo.png" alt="Lifeboat logo"><span>Lifeboat</span></div>
+      <h1>Mission Control for <strong>CrossFit Coaches</strong></h1>
+
+      <div class="features" role="tablist" aria-label="Lifeboat app previews">
+        <button class="carousel-arrow prev" type="button" aria-label="Previous feature">‹</button>
+        <button class="carousel-arrow next" type="button" aria-label="Next feature">›</button>
+
+        <button class="feature active" type="button" role="tab" aria-selected="true" data-screen="lesson-plans">
+          <span class="feature-title">Write lesson plans</span>
+        </button>
+        <button class="feature" type="button" role="tab" aria-selected="false" data-screen="movement-library">
+          <span class="feature-title">Build a personal movement library</span>
+        </button>
+        <button class="feature" type="button" role="tab" aria-selected="false" data-screen="live-timelines">
+          <span class="feature-title">Live timelines (Pro)</span>
+        </button>
+      </div>
+
       <div class="waitlist">
-        <form class="waitlist-form"><div class="form-row"><input type="email" name="email" placeholder="your@email.com" required autocomplete="email" /><button type="submit">Join waitlist</button></div></form>
+        <div class="cta-stack">
+          <form class="waitlist-form">
+            <div class="form-row">
+              <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+              <button type="submit">Join waitlist</button>
+            </div>
+          </form>
+          <a class="beta-button" href="https://testflight.apple.com/join/pfsba7pV">Try the beta</a>
+        </div>
         <div class="error-msg" role="alert" aria-live="polite">Something went wrong — please try again.</div>
-        <div class="success-msg" role="status" aria-live="polite"><span>You're on the list — we'll be in touch.</span></div>
+        <div class="success-msg" role="status" aria-live="polite">You're on the list — we'll be in touch.</div>
+      </div>
+
+      <div class="phone-stage" aria-label="Lifeboat app preview">
+        <div class="phone-stack">
+          <div class="phone-screen">
+            <img class="phone-shot active" data-screen-image="lesson-plans" src="assets/screen-lesson-plans.png" alt="Lifeboat lesson plans screen">
+            <img class="phone-shot" data-screen-image="movement-library" src="assets/screen-movement-library.png" alt="Lifeboat movement library screen">
+            <img class="phone-shot" data-screen-image="live-timelines" src="assets/screen-live-timelines.jpg" alt="Lifeboat live timelines screen">
+          </div>
+          <img class="phone-frame" src="assets/iphone-frame.png" alt="" aria-hidden="true">
+        </div>
       </div>
     </section>
   </main>
+
   <script>
-    document.querySelectorAll('.waitlist-form').forEach((form)=>{form.addEventListener('submit',async(e)=>{e.preventDefault();const wrap=form.closest('.waitlist');const btn=form.querySelector('button');const errorMsg=wrap.querySelector('.error-msg');const successMsg=wrap.querySelector('.success-msg');const email=form.querySelector('input[name="email"]').value;btn.disabled=true;btn.textContent='Joining...';errorMsg.classList.remove('show');try{const res=await fetch('/api/waitlist',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});if(!res.ok)throw new Error('Server error');form.style.display='none';successMsg.classList.add('show')}catch{btn.disabled=false;btn.textContent='Join waitlist';errorMsg.classList.add('show')}})});
+    const tabs=[...document.querySelectorAll('.feature')];
+    const shots=[...document.querySelectorAll('.phone-shot')];
+    const prev=document.querySelector('.carousel-arrow.prev');
+    const next=document.querySelector('.carousel-arrow.next');
+    let activeIndex=0;
+    let timer;
+
+    function setFeature(index,userSelected=false){
+      activeIndex=(index+tabs.length)%tabs.length;
+      const key=tabs[activeIndex].dataset.screen;
+      tabs.forEach((tab,i)=>{
+        const active=i===activeIndex;
+        tab.classList.toggle('active',active);
+        tab.setAttribute('aria-selected',active?'true':'false');
+      });
+      shots.forEach(shot=>shot.classList.toggle('active',shot.dataset.screenImage===key));
+      if(userSelected) restartRotation();
+    }
+    function restartRotation(){
+      clearInterval(timer);
+      timer=setInterval(()=>setFeature(activeIndex+1),4500);
+    }
+    tabs.forEach((tab,index)=>tab.addEventListener('click',()=>setFeature(index,true)));
+    prev.addEventListener('click',()=>setFeature(activeIndex-1,true));
+    next.addEventListener('click',()=>setFeature(activeIndex+1,true));
+    restartRotation();
+
+    document.querySelectorAll('.waitlist-form').forEach(form=>{
+      form.addEventListener('submit',async e=>{
+        e.preventDefault();
+        const wrap=form.closest('.waitlist');
+        const button=form.querySelector('button');
+        const errorMsg=wrap.querySelector('.error-msg');
+        const successMsg=wrap.querySelector('.success-msg');
+        const email=form.querySelector('input[name="email"]').value;
+        button.disabled=true;
+        button.textContent='Joining...';
+        errorMsg.classList.remove('show');
+        try{
+          const response=await fetch('/api/waitlist',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
+          if(!response.ok) throw new Error('Server error');
+          form.style.display='none';
+          successMsg.classList.add('show');
+        }catch(error){
+          button.disabled=false;
+          button.textContent='Join waitlist';
+          errorMsg.classList.add('show');
+        }
+      });
+    });
   </script>
 </body>
 </html>

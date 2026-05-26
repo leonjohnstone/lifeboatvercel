@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#05080c" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>Lifeboat — Mission Control for CrossFit Coaches</title>
   <meta name="description" content="Lifeboat is Mission Control for CrossFit Coaches: lesson plans, movement libraries, and live timelines." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,14 +26,20 @@
     }
 
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{
-      min-height:100vh;
-      font-family:"DM Mono",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
-      color:var(--ink);
+    html{
+      min-height:100%;
+      background-color:#05080c;
       background:
         radial-gradient(circle at 82% 18%,rgba(241,100,34,.22),transparent 30%),
         radial-gradient(circle at 18% 82%,rgba(31,88,132,.18),transparent 33%),
         linear-gradient(135deg,#030508 0%,#111923 52%,#030508 100%);
+      background-attachment:fixed;
+    }
+    body{
+      min-height:100vh;
+      font-family:"DM Mono",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+      color:var(--ink);
+      background:transparent;
       overflow-x:hidden;
     }
     body::before{
@@ -44,7 +52,7 @@
       width:min(1180px,100%);
       min-height:100svh;
       margin:0 auto;
-      padding:42px clamp(18px,4vw,64px);
+      padding:calc(42px + env(safe-area-inset-top)) clamp(18px,4vw,64px) calc(42px + env(safe-area-inset-bottom));
       display:grid;
       grid-template-columns:minmax(0,1fr) minmax(300px,430px);
       grid-template-areas:
@@ -93,7 +101,7 @@
     .phone-frame{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;z-index:2}
 
     @media (max-width:760px){
-      .hero{width:100%;min-height:100svh;padding:24px 18px 30px;grid-template-columns:1fr;grid-template-areas:"brand" "title" "phone" "features" "cta";align-content:start;justify-items:stretch;gap:0}
+      .hero{width:100%;min-height:100svh;padding:calc(24px + env(safe-area-inset-top)) 18px calc(30px + env(safe-area-inset-bottom));grid-template-columns:1fr;grid-template-areas:"brand" "title" "phone" "features" "cta";align-content:start;justify-items:stretch;gap:0}
       .brand{margin-bottom:20px}.brand img{width:34px;height:34px}.brand span{font-size:15px}
       h1{font-size:clamp(35px,10vw,56px);line-height:1.12;margin:0 0 22px}
       .phone-stage{width:min(58vw,280px);margin:0 auto 18px}
@@ -107,7 +115,7 @@
       .form-row{height:auto;grid-template-columns:1fr}.form-row input{height:52px}.form-row button,.beta-button{height:52px}
     }
     @media (max-width:420px){
-      .hero{padding:18px 14px 24px}.brand{margin-bottom:16px}.brand span{display:none}h1{font-size:32px;margin-bottom:16px}.phone-stage{width:min(64vw,245px);margin-bottom:14px}.features{margin-bottom:20px}.feature-title{font-size:20px}input[type=email]{font-size:13px}.form-row button,.beta-button{font-size:13px}
+      .hero{padding:calc(18px + env(safe-area-inset-top)) 14px calc(24px + env(safe-area-inset-bottom))}.brand{margin-bottom:16px}.brand span{display:none}h1{font-size:32px;margin-bottom:16px}.phone-stage{width:min(64vw,245px);margin-bottom:14px}.features{margin-bottom:20px}.feature-title{font-size:20px}input[type=email]{font-size:13px}.form-row button,.beta-button{font-size:13px}
     }
   </style>
 </head>

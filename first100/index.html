@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The First 100 Days of CrossFit.com Programming</title>
+  <meta name="description" content="The first 100 days of CrossFit.com programming: 10 February 2001 through 20 May 2001." />
+  <link rel="stylesheet" href="styles.css" onerror="document.documentElement.classList.add('asset-error-css')" />
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <p class="eyebrow">10 Feb 2001 – 20 May 2001</p>
+      <h1>The First 100 Days of CrossFit.com Programming</h1>
+      <p class="app-link"><strong>Lifeboat - Class Planning for Coaches</strong><br><a href="https://apps.apple.com/us/app/lifeboat-planner/id6768074373">Download on the App Store</a></p>
+    </header>
+
+    <section class="controls" aria-label="Archive controls">
+      <input id="search" type="search" placeholder="Search the full entries…" />
+    </section>
+
+    <section id="list" class="entries" aria-live="polite"></section>
+
+    <footer>
+      <p class="app-link"><strong>Lifeboat - Class Planning for Coaches</strong><br><a href="https://apps.apple.com/us/app/lifeboat-planner/id6768074373">Download on the App Store</a></p>
+    </footer>
+  </main>
+
+  <script src="data.js" onerror="window.__assetErrors = (window.__assetErrors || []).concat('data.js failed to load')"></script>
+  <script src="script.js" onerror="window.__assetErrors = (window.__assetErrors || []).concat('script.js failed to load')"></script>
+  <script>
+    (function () {
+      function showAssetError(message) {
+        var list = document.getElementById('list');
+        if (!list) return;
+        list.innerHTML = '<div class="asset-error"><strong>Archive files did not load.</strong><br>' + message + '<br><br>Check that <code>index.html</code>, <code>styles.css</code>, <code>data.js</code>, and <code>script.js</code> are all in the same <code>first100</code> folder on GitHub Pages.</div>';
+      }
+      window.setTimeout(function () {
+        if (window.__assetErrors && window.__assetErrors.length) {
+          showAssetError(window.__assetErrors.join('<br>'));
+          return;
+        }
+        if (!window.FIRST100_ENTRIES || !window.FIRST100_ENTRIES.length) {
+          showAssetError('The data file loaded incorrectly or did not define <code>window.FIRST100_ENTRIES</code>.');
+          return;
+        }
+        if (!document.querySelector('.entry')) {
+          showAssetError('The data loaded, but the rendering script did not create any entries.');
+        }
+      }, 300);
+    }());
+  </script>
+</body>
+</html>

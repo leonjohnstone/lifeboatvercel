@@ -1,10 +1,16 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-
   "functions": {
     "api/waitlist.js": {
       "maxDuration": 10
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://apps.apple.com/us/app/lifeboat-planner/id6768074373",
+      "permanent": false
+    }
+  ]
 }
